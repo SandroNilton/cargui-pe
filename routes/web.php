@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\vehicleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('vehicle')->name('vehicle.')->controller(vehicleController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    //Route::get('/', 'store')->name('store');
+    Route::get('/{vehicle}', 'show')->name('show');
+    Route::get('/{vechicle}/edit', 'edit')->name('edit');
+    Route::get('/{vechicle}', 'update')->name('update');
+    Route::get('/{vechicle}', 'destroy')->name('destroy');
 });
